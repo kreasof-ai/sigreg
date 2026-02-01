@@ -74,7 +74,27 @@ def sigreg_weak_loss(x, sketch_dim=64):
     return torch.norm(cov - target, p='fro')
 ```
 
-## Interesting Result
+## Results
+
+| Model    | Optimizer  | CutMix/MixUp | SIGReg | Epochs | Top-1 Acc |
+|----------|------------|--------------|--------|--------|-----------|
+| ResNet18 | SGD        | No           | No     | 1600   | 79.03%    |
+| ResNet18 | SGD        | No           | Strong | 1600   | 78.86%    |
+| ResNet18 | SGD        | No           | Weak   | 1600   | 79.42%    |
+| ResNet18 | SGD        | Yes          | No     | 400    | 82.13%    |
+| ResNet18 | SGD        | Yes          | Strong | 400    | 81.18%    |
+| ResNet18 | SGD        | Yes          | Weak   | 400    | 82.13%    |
+| ViT      | AdamW      | Yes          | No     | 400    | 20.73%    |
+| ViT      | AdamW      | Yes          | Strong | 400    | 70.20%    |
+| ViT      | AdamW      | Yes          | Weak   | 400    | 72.02%    |
+| ViT      | Muon+AdamW | No           | No     | 400    | 58.77%    |
+| ViT      | Muon+AdamW | No           | Strong | 400    | 63.16%    |
+| ViT      | Muon+AdamW | No           | Weak   | 400    | 67.52%    |
+| ViT      | Muon+AdamW | Yes          | No     | 400    | 62.44%    |
+| ViT      | Muon+AdamW | Yes          | Strong | 400    | 74.34%    |
+| ViT      | Muon+AdamW | Yes          | Weak   | 400    | 74.56%    |
+
+## Interesting Findings
 
 One of the nastiest comparison happen between sample with this setup:
 - ViT (Vision Transformer)
