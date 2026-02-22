@@ -110,11 +110,11 @@ Top-1 accuracy on CIFAR-100:
 
 Loss curve on CIFAR-100:
 - Without SIGReg: 
-    ![without SIGReg loss](plot/CIFAR_100_SIGReg_Baseline_ViT_CutMix_MixUp_AdamW_loss.png)
+    ![without SIGReg loss](cifar100/plot/CIFAR_100_SIGReg_Baseline_ViT_CutMix_MixUp_AdamW_loss.png)
 - With Strong SIGReg: 
-    ![with strong SIGReg loss](plot/CIFAR_100_SIGReg_Strong_ViT_CutMix_MixUp_AdamW_loss.png)
+    ![with strong SIGReg loss](cifar100/plot/CIFAR_100_SIGReg_Strong_ViT_CutMix_MixUp_AdamW_loss.png)
 - With Weak SIGReg: 
-    ![with weak SIGReg loss](plot/CIFAR_100_SIGReg_Weak_ViT_CutMix_MixUp_AdamW_loss.png)
+    ![with weak SIGReg loss](cifar100/plot/CIFAR_100_SIGReg_Weak_ViT_CutMix_MixUp_AdamW_loss.png)
 
 ## Fixing ViT Baseline
 
@@ -167,3 +167,27 @@ We test vanilla MLP on CIFAR-100 dataset to show the effect of SIGReg on simple 
 The possible explanation why CutMix/MixUp version perform worse for weak SIGReg is that 400 epochs is not enough to converge into higher ceiling because the last recorded loss is still decreasing, since this is flat LR schedule. While no CutMix/MixUp version can converge much faster.
 
 > Note: MLP experiments mistakenly still uses gradient clipping, we will test it without gradient clipping in the future.
+
+## ImageNet Experiments
+
+We test SIGReg on [ILSVRC/imagenet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k) dataset with ViT model.
+
+| Model            | Optimizer  | CutMix/MixUp | SIGReg | Epochs | Top-1 Acc |
+|------------------|------------|--------------|--------|--------|-----------|
+| ViT-Tiny/16      | Muon+AdamW | Yes          | No     | 200    | 69.18%    |
+| ViT-Tiny/16      | Muon+AdamW | Yes          | Strong | 200    | 69.28%    |
+| ViT-Tiny/16      | Muon+AdamW | Yes          | Weak   | 200    | 72.62%    |
+
+> Note: We use from-scratch pretraining without distillation from larger teacher model.
+
+Comparison with existing technique:
+
+| Model                     | Parameters | Pretraining Data     | Distillation    | Epochs      | Top-1 Acc (%) | Key Reference                                                                                                                               |
+| ------------------------- | ---------- | -------------------- | --------------- | ----------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| ViT-Tiny (original)       | 5.7M       | ImageNet-1K only     | None            | 300         | 72.2          | [A Closer Look at Self-Supervised Lightweight Vision Transformers](https://proceedings.mlr.press/v202/wang23e/wang23e.pdf)                  |
+| DeiT-Tiny                 | 5.6M       | ImageNet-1K only     | None            | 300         | 72.2          | [Training data-efficient image transformers & distillation through attention](https://proceedings.mlr.press/v139/touvron21a/touvron21a.pdf) |
+| ViT-Tiny (enhanced)       | 5.7M       | ImageNet-1K only     | None            | 300         | 74.5          | [A Closer Look at Self-Supervised Lightweight Vision Transformers](https://proceedings.mlr.press/v202/wang23e/wang23e.pdf)                  |
+| DeiT-Tiny (distilled)     | 6M         | ImageNet-1K only     | Logit (DeiT)    | 300         | 74.5          | [Training data-efficient image transformers & distillation through attention](https://proceedings.mlr.press/v139/touvron21a/touvron21a.pdf) |
+| DeiT-Tiny (ViTKD)         | 5.6M       | ImageNet-1K only     | Feature         | 300–400     | 76.06         | [ViTKD: Feature-based Knowledge Distillation for Vision Transformers](https://openaccess.thecvf.com/content/CVPR2024W/PBDL/papers/Yang_ViTKD_Feature-based_Knowledge_Distillation_for_Vision_Transformers_CVPRW_2024_paper.pdf) |
+| DeiT-Tiny (manifold)      | 5.6M       | ImageNet-1K only     | Feature (patch) | 300         | 76.5          | [Learning Efficient Vision Transformers via Fine-Grained Manifold Distillation](https://proceedings.nips.cc/paper_files/paper/2022/file/3bd2d73b4e96b0ac5a319be58a96016c-Paper-Conference.pdf) |
+| DeiT-Tiny (ViTKD+NKD)     | 6M         | ImageNet-1K only     | Hybrid          | 300–400     | 77.78         | [ViTKD: Practical Guidelines for ViT feature knowledge distillation](https://arxiv.org/abs/2209.02432)                                      |
