@@ -170,6 +170,8 @@ The possible explanation why CutMix/MixUp version perform worse for weak SIGReg 
 
 ## ImageNet Experiments
 
+<img width="2528" height="2528" alt="W B Chart 2_22_2026, 8_22_18 PM" src="https://github.com/user-attachments/assets/9db37ad0-3ab7-4c7c-9973-c40f7248d54e" />
+
 We test SIGReg on [ILSVRC/imagenet-1k](https://huggingface.co/datasets/ILSVRC/imagenet-1k) dataset with ViT model.
 
 | Model            | Optimizer  | CutMix/MixUp | SIGReg | Epochs | Top-1 Acc |
