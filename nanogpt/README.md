@@ -87,19 +87,24 @@ Results on NanoGPT (100M params, 1B tokens fineweb-edu dataset):
     - Train loss: 3.1379
     - Val loss: 3.1210
     - Wall time: 130262.25s (36.18 hours)
+    - Link: https://huggingface.co/ChavyvAkvar/baseline-nanoGPT
 - Strong SIGReg:
     - Train loss: 7.7682
     - Val loss: 7.9404
     - Wall time: 138726.38s (38.53 hours)
+    - Link: https://huggingface.co/ChavyvAkvar/strong-SIGReg-nanoGPT
 - Weak SIGReg:
     - Train loss: 3.1633
     - Val loss: 3.1233
     - Wall time: 131881.89s (36.63 hours)
+    - Link: https://huggingface.co/ChavyvAkvar/weak-SIGReg-nanoGPT
 - Discrete SIReg:
     - Train loss: 3.1473
     - Val loss: 3.1332
     - Wall time: 135010.85s (37.50 hours)
+    - Link: https://huggingface.co/ChavyvAkvar/discrete-SIReg-scaling-by-one-nanoGPT
 - Zipf SIReg:
     - Train loss: 3.1302
     - Val loss: 3.1178
     - Wall time: 134855.32s (37.46 hours)
+    - Link: https://huggingface.co/ChavyvAkvar/zipfian-nanoGPT
