@@ -78,6 +78,9 @@ def zipf_orthogonal_est(x, sketch_dim=64, zipf_s=1.0, lam_ang=1.0, lam_mag=1.0, 
 
 Results on NanoGPT (100M params, 1B tokens fineweb-edu dataset):
 
+<img width="2528" height="1328" alt="W B Chart 4_1_2026, 1_01_19 PM" src="https://github.com/user-attachments/assets/8eb6315d-f393-4f27-8435-e9aa04295b73" />
+<img width="2528" height="1328" alt="W B Chart 4_1_2026, 1_01_30 PM" src="https://github.com/user-attachments/assets/d98f78df-0184-4b16-9c08-6c5c79c8152d" />
+
 - Baseline (no SIGReg):
     - Train loss: 3.1379
     - Val loss: 3.1210
