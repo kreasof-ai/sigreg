@@ -1,5 +1,8 @@
 # Version for LLM
 
+Implementation:
+- Instead of mean pooling over tokens, we flatten batch and sequence dimension together (B*T, C)
+
 We test two version:
 
 - Orthogonal angle but free magnitude:
