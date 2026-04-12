@@ -27,3 +27,13 @@ Comparison with existing technique:
 ## Activation Residual Probing
 
 <img width="1389" height="1013" alt="download (2)" src="https://github.com/user-attachments/assets/445a3f98-7df4-4610-a231-090445854a05" />
+
+1. Effective Dimension calculated by Participation Ratio: $d_{eff} = \frac{(\sum_i \lambda_i)^2}{\sum_i \lambda_i^2}$
+    - Weak-SIGReg show higher $d_{eff}$ than Strong-SIGReg and No-SIGReg. While Strong-SIGReg collapse to 1D.
+2. Spectral Entropy (Information Capacity): $H = -\sum_i p_i \log p_i$
+    - Weak-SIGReg show higher $H$ than Strong-SIGReg and No-SIGReg. With few middle layers almost reach maximum information capacity ceiling for 192 dimension features.
+3. Average Pairwise Cosine Similarity (Isotropy): $S = \frac{1}{n(n-1)} \sum_{i \neq j} \frac{a_i \cdot a_j}{\|a_i\| \|a_j\|}$
+    - Weak-SIGReg showing noticeably lower average pairwise cosine similarity than No-SIGReg for few middle layers.
+    - While Strong-SIGReg showing overall isotropic features. We suspect it's because the model find numerical exploit where a single feature is dominating magnitude to satisfy Strong-SIGReg constraint. Thus, making overall feature distribution isotropic.  
+4. L2 Norm Variance (Feature Magnitude): $\sigma^2 = \frac{1}{n} \sum_i (\|a_i\| - \mu)^2$
+    - Strong-SIGReg showing significantly higher L2 norm for middle and late layer. While Weak-SIGReg and No-SIGReg show consistent magnitude across layers.
