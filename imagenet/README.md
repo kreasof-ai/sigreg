@@ -26,3 +26,4 @@ Comparison with existing technique:
 
 ## Activation Residual Probing
 
+<img width="1389" height="1013" alt="download (2)" src="https://github.com/user-attachments/assets/445a3f98-7df4-4610-a231-090445854a05" />
